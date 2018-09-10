@@ -1,7 +1,7 @@
 require "../../../../spec_helper"
 
-module Amber::Router::Session
-  COOKIE_STORE = Amber::Router::Cookies::Store.new
+module Amber::Session
+  COOKIE_STORE = Amber::Cookies::Store.new
   EXPIRES      = 120 # 2 minutes
 
   describe CookieStore do

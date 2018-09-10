@@ -12,12 +12,6 @@ module Amber
       end
     end
 
-    class Environment < Exception
-      def initialize(path, environment)
-        super("Environment file not found for #{path}#{environment}")
-      end
-    end
-
     # NOTE: Any exceptions which aren't part of and http request cycle shouldn't inherit from Base.
     class EncryptionKeyMissing < Exception
       def initialize(file_path, encrypt_env)

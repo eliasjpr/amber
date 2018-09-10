@@ -3,8 +3,8 @@ require "../../../support/fixtures/render_fixtures"
 
 include RenderFixtures
 
-module Amber::Controller
-  describe Base do
+module Amber
+  describe Controller do
     describe "#render" do
       request = HTTP::Request.new("GET", "")
       context = create_context(request)

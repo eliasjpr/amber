@@ -1,6 +1,6 @@
 require "./base"
 
-module Amber::Controller
+module Controller
   class Error < Base
     def initialize(@context : HTTP::Server::Context, @ex : Exception)
       super(@context)

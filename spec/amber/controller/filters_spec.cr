@@ -1,7 +1,7 @@
 require "../../../spec_helper"
 
-module Amber::Controller
-  describe Base do
+module Amber
+  describe Controller do
     describe "controller before and after filters" do
       context "registering action filters" do
         it "registers a before action" do

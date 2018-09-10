@@ -1,6 +1,6 @@
 require "../../../../spec_helper"
 
-module Amber::Router::Parsers
+module Amber::Parsers
   describe JSON do
     describe "self.parse" do
       it "should allow a nil body" do

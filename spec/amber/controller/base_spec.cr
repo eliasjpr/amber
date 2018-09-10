@@ -1,7 +1,7 @@
 require "../../../spec_helper"
 
-module Amber::Controller
-  describe Base do
+module Amber
+  describe Controller do
     controller = build_controller
 
     it "responds to context methods" do

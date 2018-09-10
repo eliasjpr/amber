@@ -8,16 +8,19 @@ require "kilt/slang"
 require "redis"
 require "environment"
 
+require "./amber/controller"
 require "./amber/version"
-require "./amber/controller/**"
+require "./amber/cookies"
+require "./amber/session"
+require "./amber/context"
+
 require "./amber/dsl/**"
+require "./amber/pipes/**"
 require "./amber/exceptions/**"
 require "./amber/extensions/**"
-require "./amber/router/context"
-require "./amber/pipes/**"
-require "./amber/server/**"
-require "./amber/validators/**"
 require "./amber/websockets/**"
+
+require "./amber/server"
 
 module Amber
   include Environment

@@ -1,7 +1,7 @@
 require "../../../spec_helper"
 include SessionHelper
 
-module Amber::Router
+module Amber
   Amber.settings.redis_url = ENV["REDIS_URL"] if ENV["REDIS_URL"]?
   describe Session::Store do
     it "creates a cookie session store" do

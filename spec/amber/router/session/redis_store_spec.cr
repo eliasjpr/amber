@@ -2,7 +2,7 @@ require "../../../../spec_helper"
 require "redis"
 
 # TODO: This test can't run on it's own because it needs the EXPIRES constant which is set elsewhere.
-module Amber::Router::Session
+module Amber::Session
   REDIS_STORE = Redis.new(url: Amber.settings.redis_url)
 
   describe RedisStore do

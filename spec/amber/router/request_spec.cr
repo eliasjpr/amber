@@ -1,6 +1,6 @@
 require "../../../spec_helper"
 
-module Amber::Router
+module Amber
   describe HTTP::Request do
     headers = HTTP::Headers.new
 

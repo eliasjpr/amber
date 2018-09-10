@@ -1,6 +1,6 @@
 require "../../../spec_helper"
 
-module Amber::Router
+module Amber
   describe Params do
     params = multipart_form_post
 

@@ -68,7 +68,7 @@ module Amber
   end
 end
 
-class FakeController < Amber::Controller::Base
+class FakeController < Amber::Controller
   before_action do
     only :halt_action { halt!(900) }
   end
@@ -79,7 +79,7 @@ class FakeController < Amber::Controller::Base
   end
 end
 
-class FakeRedirectController < Amber::Controller::Base
+class FakeRedirectController < Amber::Controller
   def redirect_action
     redirect_to "/"
     ""

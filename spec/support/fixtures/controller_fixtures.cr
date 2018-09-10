@@ -1,4 +1,4 @@
-class RedirectController < Amber::Controller::Base
+class RedirectController < Amber::Controller
   def index
     "Index"
   end
@@ -20,7 +20,7 @@ class RedirectController < Amber::Controller::Base
   end
 end
 
-class HelloController < Amber::Controller::Base
+class HelloController < Amber::Controller
   @total : Int32 = 0
 
   before_action do
@@ -82,7 +82,7 @@ class HelloController < Amber::Controller::Base
   end
 end
 
-class RenderController < Amber::Controller::Base
+class RenderController < Amber::Controller
   def render_template_page
     render(path: "spec/support/sample/views", template: "test/test.slang", layout: false)
   end
@@ -109,7 +109,7 @@ class RenderController < Amber::Controller::Base
   end
 end
 
-class ResponsesController < Amber::Controller::Base
+class ResponsesController < Amber::Controller
   def index
     respond_with do
       html "<html><body><h1>Elorest <3 Amber</h1></body></html>"

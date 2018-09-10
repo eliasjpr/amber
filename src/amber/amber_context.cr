@@ -1,0 +1,82 @@
+require "./request"
+require "./cookies"
+require "./session/store"
+require "./flash"
+
+module Amber
+  module Context
+
+    METHODS = %i(get post put patch delete head)
+
+    setter flash : Amber::Flash?
+    property content : String?
+    setter cookies : Cookies::Store?
+    setter session : Session::AbstractStore?
+
+    def params
+      request.params
+    end
+
+    def cookies
+      @cookies ||= Cookies::Store.build(request, Amber.settings.secret_key_base)
+    end
+
+    def session
+      @session ||= Session::Store.build(cookies, Amber.settings.session)
+    end
+
+    def flash
+      @flash ||= Amber::Flash.from_session(session.fetch(Amber::Pipe::Flash::PARAM_KEY, "{}"))
+    end
+
+    def websocket?
+      request.headers["Upgrade"]? == "websocket"
+    end
+
+    # TODO rename this method to something move descriptive
+    def valve
+      request.route.valve
+    end
+
+    {% for method in METHODS %}
+    def {{method.id}}?
+      request.method == "{{method.id}}"
+    end
+    {% end %}
+
+    def format
+      Amber::Support::MimeTypes.get_request_format(request)
+    end
+
+    def port
+      request.port
+    end
+
+    def requested_url
+      request.url
+    end
+
+    def halt!(status_code : Int32 = 200, @content = "")
+      response.headers["Content-Type"] = "text/plain"
+      response.status_code = status_code
+    end
+
+    protected def valid_route?
+      request.valid_route?
+    end
+
+    protected def process_websocket_request
+      request.process_websocket.call(self)
+    end
+
+    protected def process_request
+      request.route.call(self)
+    end
+
+    protected def finalize_response
+      response.headers["Connection"] = "Keep-Alive"
+      response.headers.add("Keep-Alive", "timeout=5, max=10000")
+      response.print(@content) unless request.method == "HEAD"
+    end
+  end
+end

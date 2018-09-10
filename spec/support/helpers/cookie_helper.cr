@@ -1,7 +1,9 @@
 module CookieHelper
+  include Cookies
+
   def new_cookie_store(headers = HTTP::Headers.new)
-    cookies = Amber::Router::Cookies::Store.new
-    cookies.update(Amber::Router::Cookies::Store.from_headers(headers))
+    cookies = Cookies::Store.new
+    cookies.update(Cookies::Store.from_headers(headers))
     cookies
   end
 

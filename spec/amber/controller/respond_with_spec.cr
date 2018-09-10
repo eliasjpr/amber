@@ -1,7 +1,7 @@
 require "../../../spec_helper"
 
-module Amber::Controller
-  describe Base do
+module Amber
+  describe Controller do
     describe "#respond_with" do
       request = HTTP::Request.new("GET", "")
       request.headers["Accept"] = ""

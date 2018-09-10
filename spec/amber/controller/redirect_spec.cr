@@ -1,7 +1,7 @@
 require "../../../spec_helper"
 
-module Amber::Controller::Helpers
-  describe Redirector do
+module Amber
+  describe Redirect do
     describe "#redirect" do
       it "redirects to location" do
         controller = build_controller
@@ -12,7 +12,7 @@ module Amber::Controller::Helpers
 
       it "raises Exception::Controller::Redirect on invalid location" do
         controller = build_controller
-        expect_raises Exceptions::Controller::Redirect do
+        expect_raises Redirect::Error do
           redirector = Redirector.new("", params: {"user_id" => "123"})
           redirector.redirect(controller)
         end
@@ -106,7 +106,7 @@ module Amber::Controller::Helpers
 
       it "raises an error" do
         controller = build_controller("")
-        expect_raises Exceptions::Controller::Redirect do
+        expect_raises Redirect::Error do
           controller.redirect_back
         end
       end
